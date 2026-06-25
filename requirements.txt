@@ -13,4 +13,6 @@ slowapi==0.1.9
 aiofiles==23.2.1
 python-multipart==0.0.9
 aiosqlite==0.20.0
+psycopg2-binary
+
 
