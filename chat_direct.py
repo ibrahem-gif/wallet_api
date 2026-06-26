@@ -21,7 +21,23 @@ from config import DATABASE_URL, DEFAULT_PAGE_SIZE, MAX_PAGE_SIZE
 router = APIRouter(prefix="/chat-direct", tags=["Direct Chat"])
 
 from auth import get_current_user
-from db import DATABASE_URL
+from db import database
+import httpx
+from config import TELEGRAM_BOT_TOKEN
+
+# ── إشعار تيليجرام ────────────────────────────────────────────────────────────
+async def notify_telegram(chat_id: str, text: str):
+    if not TELEGRAM_BOT_TOKEN or not chat_id:
+        return
+    try:
+        async with httpx.AsyncClient() as client:
+            await client.post(
+                f"https://api.telegram.org/bot{TELEGRAM_BOT_TOKEN}/sendMessage",
+                json={"chat_id": chat_id, "text": text},
+                timeout=5
+            )
+    except Exception:
+        pass  # الإشعار اختياري، ما نوقف الرسالة بسببه
 # ══════════════════════════════════════════════════════════════════════════════
 # جدول الدردشة المباشرة
 # ══════════════════════════════════════════════════════════════════════════════
