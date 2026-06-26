@@ -21,7 +21,7 @@ from config import DATABASE_URL, DEFAULT_PAGE_SIZE, MAX_PAGE_SIZE
 router = APIRouter(prefix="/chat-direct", tags=["Direct Chat"])
 
 from auth import get_current_user
-from db import database
+from db import DATABASE_URL
 # ══════════════════════════════════════════════════════════════════════════════
 # جدول الدردشة المباشرة
 # ══════════════════════════════════════════════════════════════════════════════
