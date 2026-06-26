@@ -95,14 +95,12 @@ app = FastAPI(
     redoc_url=None
 )
 
-ALLOWED_ORIGINS = os.getenv("ALLOWED_ORIGINS", "").split(",")
-
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=ALLOWED_ORIGINS,
-    allow_methods=["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-    allow_headers=["Authorization", "Content-Type", "Accept"],
-    allow_credentials=True,
+    allow_origins=["*"],
+    allow_methods=["*"],
+    allow_headers=["*"],
+    allow_credentials=False,
 )
 app.mount("/uploads/avatars", StaticFiles(directory=f"{UPLOAD_DIR}/avatars"), name="avatars")
 
