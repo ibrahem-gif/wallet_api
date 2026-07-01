@@ -104,8 +104,6 @@ app.add_middleware(
 )
 app.mount("/uploads/avatars", StaticFiles(directory=f"{UPLOAD_DIR}/avatars"), name="avatars")
 
-# ====== قاعدة البيانات ======
-database = databases.Database(DATABASE_URL)
 metadata = sqlalchemy.MetaData()
 
 users = sqlalchemy.Table("users", metadata,
